@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect | Minuyan National High School</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- INTRO SCREEN -->
+<div class="intro-screen" id="introScreen">
+    <img src="school-logo.png"
+         alt="Minuyan National High School Logo"
+         class="intro-logo">
+
+    <p class="intro-welcome">WELCOME TO</p>
+    <h1>Campus Connect</h1>
+    <p class="intro-school">Minuyan National High School</p>
+
+    <p class="intro-description">
+        Your centralized source for school announcements,
+        important updates, and upcoming events.
+    </p>
+
+    <button class="intro-button" onclick="enterWebsite()">
+        ENTER WEBSITE
+    </button>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="brand">
+        <img src="school-logo.png"
+             alt="school Logo"
+             class="header-logo">
+
+        <div>
+            <h2>Campus Connect</h2>
+            <p>Minuyan National High School</p>
+        </div>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navigation">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#announcements" onclick="closeMenu()">Announcements</a>
+        <a href="#events" onclick="closeMenu()">Events</a>
+        <a href="#admin" onclick="closeMenu()">Admin</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <p class="hero-label">MINUYAN NATIONAL HIGH SCHOOL</p>
+    <h1>Stay Connected.<br>Stay Informed.</h1>
+
+    <p>
+        Welcome to Campus Connect, your centralized
+        platform for school announcements and updates.
+    </p>
+
+    <a href="#announcements" class="hero-btn">
+        Explore Announcements
+    </a>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+
+    <!-- ANNOUNCEMENTS -->
+    <section id="announcements">
+        <div class="section-heading">
+            <span>STAY INFORMED</span>
+            <h2>Latest Announcements</h2>
+            <p>Important updates from our school community.</p>
+        </div>
+
+        <div id="announcement-list" class="card-grid"></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events">
+        <div class="section-heading">
+            <span>MARK YOUR CALENDAR</span>
+            <h2>Upcoming Events</h2>
+            <p>Discover school activities and upcoming events.</p>
+        </div>
+
+        <div id="event-list" class="card-grid"></div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section id="admin">
+        <div class="section-heading">
+            <span>CONTENT MANAGEMENT</span>
+            <h2>Admin Panel</h2>
+            <p>Manage announcements and school events.</p>
+        </div>
+
+        <div class="admin-grid">
+
+            <!-- ADD ANNOUNCEMENT -->
+            <div class="admin-card">
+                <h3>Add Announcement</h3>
+
+                <form id="announcement-form">
+                    <label for="announcement-title">Title</label>
+                    <input
+                        type="text"
+                        id="announcement-title"
+                        placeholder="Enter announcement title"
+                        required>
+
+                    <label for="announcement-category">Category</label>
+                    <select id="announcement-category">
+                        <option>General</option>
+                        <option>Academic</option>
+                        <option>School Activity</option>
+                        <option>Important Notice</option>
+                    </select>
+
+                    <label for="announcement-description">Description</label>
+                    <textarea
+                        id="announcement-description"
+                        placeholder="Write your announcement..."
+                        required></textarea>
+
+                    <button type="submit" class="submit-btn">
+                        Publish Announcement
+                    </button>
+                </form>
+            </div>
+
+            <!-- ADD EVENT -->
+            <div class="admin-card">
+                <h3>Add School Event</h3>
+
+                <form id="event-form">
+                    <label for="event-title">Event Name</label>
+                    <input
+                        type="text"
+                        id="event-title"
+                        placeholder="Enter event name"
+                        required>
+
+                    <label for="event-date">Event Date</label>
+                    <input type="date" id="event-date" required>
+
+                    <label for="event-description">Description</label>
+                    <textarea
+                        id="event-description"
+                        placeholder="Write event details..."
+                        required></textarea>
+
+                    <button type="submit" class="submit-btn">
+                        Add Event
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- MANAGE POSTS -->
+        <div class="manage-card">
+            <h3>Manage Published Content</h3>
+            <p>Remove announcements or events when necessary.</p>
+            <div id="manage-list"></div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <img src="school-logo.png"
+         alt="School Logo"
+         class="footer-logo">
+
+    <h3>Campus Connect</h3>
+    <p>Minuyan National High School</p>
+    <p>Curvada, Barangay Minuyan, Norzagaray, Bulacan</p>
+
+    <div class="footer-line"></div>
+
+    <p class="developers">
+        Developed by: Judy Consignia, Sophia Dawatan,
+        and John Carlo Abonador
+    </p>
+
+    <p class="copyright">
+        © 2026 Campus Connect. All Rights Reserved.
+    </p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// INTRO SCREEN
+function enterWebsite() {
+    document.getElementById("introScreen").style.display = "none";
+}
+
+// DEFAULT ANNOUNCEMENTS
+const defaultAnnouncements = [
+    {
+        id: 1,
+        title: "Welcome to Campus Connect",
+        category: "General",
+        description: "Welcome to our centralized school announcement portal. Visit this page regularly for important school updates.",
+        date: "November 25, 2026"
+    },
+    {
+        id: 2,
+        title: "Academic Reminders",
+        category: "Academic",
+        description: "Students are encouraged to stay updated with classroom activities and academic requirements.",
+        date: "November 25, 2026"
+    },
+    {
+        id: 3,
+        title: "School Activities",
+        category: "School Activity",
+        description: "Stay informed about upcoming school activities, programs, and student events.",
+        date: "November 25, 2026"
+    }
+];
+
+// DEFAULT EVENTS
+const defaultEvents = [
+    {
+        id: 1,
+        title: "School Community Activities",
+        date: "2026-12-05",
+        description: "Details about upcoming school community activities."
+    },
+    {
+        id: 2,
+        title: "Student Activities",
+        date: "2026-12-12",
+        description: "Stay tuned for more information about student activities."
+    }
+];
+
+// LOAD SAVED DATA
+function loadData(key, defaults) {
+    try {
+        const saved = localStorage.getItem(key);
+        return saved ? JSON.parse(saved) : defaults;
+    } catch (error) {
+        return defaults;
+    }
+}
+
+let announcements = loadData(
+    "campusAnnouncements",
+    defaultAnnouncements
+);
+
+let events = loadData(
+    "campusEvents",
+    defaultEvents
+);
+
+// SAVE DATA
+function saveData() {
+    localStorage.setItem(
+        "campusAnnouncements",
+        JSON.stringify(announcements)
+    );
+
+    localStorage.setItem(
+        "campusEvents",
+        JSON.stringify(events)
+    );
+}
+
+// PROTECT DISPLAYED TEXT
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
+// DISPLAY ANNOUNCEMENTS
+function renderAnnouncements() {
+    const container = document.getElementById("announcement-list");
+
+    if (announcements.length === 0) {
+        container.innerHTML = "<p>No announcements available.</p>";
+        return;
+    }
+
+    container.innerHTML = announcements.map(item => `
+        <article class="content-card">
+            <span class="category">${escapeHTML(item.category)}</span>
+            <h3>${escapeHTML(item.title)}</h3>
+            <p>${escapeHTML(item.description)}</p>
+            <small>Posted: ${escapeHTML(item.date)}</small>
+        </article>
+    `).join("");
+}
+
+// DISPLAY EVENTS
+function renderEvents() {
+    const container = document.getElementById("event-list");
+
+    if (events.length === 0) {
+        container.innerHTML = "<p>No upcoming events available.</p>";
+        return;
+    }
+
+    container.innerHTML = events.map(item => `
+        <article class="content-card">
+            <span class="category">SCHOOL EVENT</span>
+            <h3>${escapeHTML(item.title)}</h3>
+            <p>${escapeHTML(item.description)}</p>
+            <small>Event Date: ${escapeHTML(item.date)}</small>
+        </article>
+    `).join("");
+}
+
+// DISPLAY ADMIN MANAGEMENT LIST
+function renderManageList() {
+    const container = document.getElementById("manage-list");
+
+    container.innerHTML = `
+        <h4>Announcements</h4>
+
+        ${announcements.map(item => `
+            <div class="manage-item">
+                <span>${escapeHTML(item.title)}</span>
+                <button onclick="deleteAnnouncement(${item.id})">
+                    Delete
+                </button>
+            </div>
+        `).join("")}
+
+        <h4>Events</h4>
+
+        ${events.map(item => `
+            <div class="manage-item">
+                <span>${escapeHTML(item.title)}</span>
+                <button onclick="deleteEvent(${item.id})">
+                    Delete
+                </button>
+            </div>
+        `).join("")}
+    `;
+}
+
+// ADD ANNOUNCEMENT
+document.getElementById("announcement-form")
+.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    announcements.unshift({
+        id: Date.now(),
+        title: document.getElementById("announcement-title").value.trim(),
+        category: document.getElementById("announcement-category").value,
+        description: document.getElementById("announcement-description").value.trim(),
+        date: new Date().toLocaleDateString()
+    });
+
+    saveData();
+    renderAll();
+    this.reset();
+
+    alert("Announcement published!");
+});
+
+// ADD EVENT
+document.getElementById("event-form")
+.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    events.unshift({
+        id: Date.now(),
+        title: document.getElementById("event-title").value.trim(),
+        date: document.getElementById("event-date").value,
+        description: document.getElementById("event-description").value.trim()
+    });
+
+    saveData();
+    renderAll();
+    this.reset();
+
+    alert("Event added successfully!");
+});
+
+// DELETE ANNOUNCEMENT
+function deleteAnnouncement(id) {
+    if (!confirm("Are you sure you want to delete this announcement?")) {
+        return;
+    }
+
+    announcements = announcements.filter(item => item.id !== id);
+    saveData();
+    renderAll();
+}
+
+// DELETE EVENT
+function deleteEvent(id) {
+    if (!confirm("Are you sure you want to delete this event?")) {
+        return;
+    }
+
+    events = events.filter(item => item.id !== id);
+    saveData();
+    renderAll();
+}
+
+// REFRESH ALL CONTENT
+function renderAll() {
+    renderAnnouncements();
+    renderEvents();
+    renderManageList();
+}
+
+// MOBILE NAVIGATION
+function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("active");
+}
+
+function closeMenu() {
+    document.getElementById("navigation").classList.remove("active");
+}
+
+// INITIAL DISPLAY
+renderAll();
+
+</script>
+
+</body>
+</html>
